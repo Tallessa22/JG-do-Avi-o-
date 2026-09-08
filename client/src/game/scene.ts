@@ -63,7 +63,7 @@ export function createGameScene(engine: Engine, canvas: HTMLCanvasElement, optio
     return material;
   };
 
-  const paperPlaneTexture = new Texture("/assets/paper-plane-kawaii.png", scene);
+  const paperPlaneTexture = new Texture(`${import.meta.env.BASE_URL}assets/paper-plane-kawaii.png`, scene);
   paperPlaneTexture.hasAlpha = true;
   const paperPlaneMaterial = new StandardMaterial("paper-plane-sprite-material", scene);
   paperPlaneMaterial.diffuseTexture = paperPlaneTexture;

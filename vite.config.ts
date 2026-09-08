@@ -203,10 +203,16 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
-
-export default defineConfig({
-  plugins,
+export default defineConfig(({ mode }) => ({
+  // Caminhos relativos permitem que o mesmo build rode na web e dentro do app Android.
+  base: "./",
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(mode === "development"
+      ? [jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()]
+      : []),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -219,6 +225,12 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // O app Android fica mais simples e confiável com um único pacote JavaScript local.
+    rollupOptions: {
+      output: {
+        inlineDynamicImports: true,
+      },
+    },
   },
   server: {
     port: 3000,
@@ -238,4 +250,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

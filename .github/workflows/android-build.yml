@@ -1,0 +1,75 @@
+name: Android
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Configurar pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+          run_install: false
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Verificar TypeScript
+        run: pnpm check
+
+      - name: Atualizar conteúdo do aplicativo
+        run: pnpm android:sync
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Instalar Android API 36
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.13"
+
+      - name: Compilar APK de teste
+        run: gradle --project-dir android assembleDebug
+
+      - name: Compilar AAB de produção sem assinatura
+        run: gradle --project-dir android bundleRelease
+
+      - name: Publicar APK de teste
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-flight-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Publicar AAB para assinatura
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-flight-release-aab-unsigned
+          path: android/app/build/outputs/bundle/release/app-release.aab

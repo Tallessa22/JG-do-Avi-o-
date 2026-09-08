@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PaperFlight.Splash" parent="Theme.PaperFlight">
+        <item name="android:windowSplashScreenBackground">@color/paper_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/paper_background</item>
+        <item name="android:postSplashScreenTheme">@style/Theme.PaperFlight</item>
+    </style>
+</resources>

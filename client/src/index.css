@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 :root {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Trebuchet MS', system-ui, sans-serif;
   color: #171a1d;
   background: #f5f1e7;
   font-synthesis: none;
@@ -12,7 +11,7 @@
 
 * { box-sizing: border-box; }
 html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
-body { min-width: 320px; }
+body { min-width: 320px; overscroll-behavior: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 button { font: inherit; }
 
 .game-shell { position: relative; width: 100%; height: 100%; min-height: 540px; isolation: isolate; overflow: hidden; background: #f5f1e7; }
@@ -23,7 +22,7 @@ button { font: inherit; }
 .touch-joystick::before { content: ''; position: absolute; left: 50%; top: 15px; bottom: 15px; width: 1px; transform: translateX(-50%); background: linear-gradient(to bottom, color-mix(in srgb, var(--control-accent) 28%, transparent), color-mix(in srgb, var(--control-accent) 7%, transparent) 48%, color-mix(in srgb, var(--control-accent) 28%, transparent)); }
 .touch-joystick-knob { position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; border: 2px solid color-mix(in srgb, var(--control-accent) 68%, transparent); border-radius: 999px; transform: translate(-50%, calc(-50% + var(--knob-y))); background: rgba(250,247,238,.36); box-shadow: 0 3px 12px rgba(20,31,48,.14), inset 0 0 0 5px color-mix(in srgb, var(--control-accent) 10%, transparent); }
 .touch-joystick-knob::after { content: ''; position: absolute; inset: 13px; border-radius: 50%; background: color-mix(in srgb, var(--control-accent) 68%, transparent); }
-.touch-joystick-arrow { position: absolute; left: 50%; transform: translateX(-50%); color: color-mix(in srgb, var(--control-accent) 55%, transparent); font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; line-height: 1; }
+.touch-joystick-arrow { position: absolute; left: 50%; transform: translateX(-50%); color: color-mix(in srgb, var(--control-accent) 55%, transparent); font-family: 'Trebuchet MS', system-ui, sans-serif; font-size: 18px; font-weight: 700; line-height: 1; }
 .touch-joystick-arrow-up { top: 4px; }
 .touch-joystick-arrow-down { bottom: 4px; }
 .asset-plane { position: fixed; z-index: 1; pointer-events: none; left: 20%; top: 43%; width: 132px; height: auto; opacity: .92; filter: saturate(.82) contrast(.98); transform: rotate(-4deg); }
@@ -33,8 +32,8 @@ button { font: inherit; }
 .game-shell::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: .1; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E"); }
 
 .orientation-gate { position: fixed; inset: 0; z-index: 50; display: grid; place-content: center; justify-items: center; gap: 10px; padding: 32px; pointer-events: auto; text-align: center; color: #171a1d; background: #f5f1e7; }
-.orientation-symbol { color: #2b5ba8; font-family: 'Patrick Hand', cursive; font-size: 64px; line-height: .8; }
-.orientation-gate strong { font-family: 'Patrick Hand', cursive; font-size: 34px; line-height: 1; }
+.orientation-symbol { color: #2b5ba8; font-family: 'Comic Sans MS', cursive; font-size: 64px; line-height: .8; }
+.orientation-gate strong { font-family: 'Comic Sans MS', cursive; font-size: 34px; line-height: 1; }
 .orientation-gate p { max-width: 320px; margin: 0; color: #59616b; font-size: 16px; line-height: 1.45; }
 .orientation-gate button { margin-top: 8px; padding: 12px 18px; border: 2px solid #2b5ba8; color: #fff; background: #2b5ba8; font-size: 14px; font-weight: 700; letter-spacing: .04em; }
 .orientation-gate button:active { transform: scale(.97); }
@@ -47,11 +46,11 @@ button { font: inherit; }
 .brand-lockup { position: relative; min-width: 310px; }
 .brand-kicker, .card-eyebrow, .score-label, .best-value, .flight-note, .hud-footer { font-size: 11px; letter-spacing: .18em; font-weight: 700; }
 .brand-kicker { color: var(--accent); margin-bottom: 3px; }
-.brand-lockup h1 { margin: 0; font-family: 'Patrick Hand', cursive; font-weight: 400; letter-spacing: .025em; font-size: clamp(46px, 6vw, 82px); line-height: .82; text-transform: uppercase; }
+.brand-lockup h1 { margin: 0; font-family: 'Comic Sans MS', cursive; font-weight: 400; letter-spacing: .025em; font-size: clamp(46px, 6vw, 82px); line-height: .82; text-transform: uppercase; }
 .brand-underline { height: 7px; width: 270px; margin-top: 15px; border-top: 3px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-1.5deg); opacity: .95; }
 .score-card { margin-top: 0; min-width: 160px; padding: 12px 23px 14px; border: 2px solid var(--accent); outline: 1px solid color-mix(in srgb, var(--accent) 48%, transparent); outline-offset: 3px; text-align: center; background: var(--surface); transform: rotate(1.2deg); }
 .score-label { color: var(--accent); font-size: 12px; display: flex; justify-content: space-between; gap: 10px; }
-.score-value { font-family: 'Patrick Hand', cursive; font-size: 66px; line-height: .78; margin: 9px 0 7px; }
+.score-value { font-family: 'Comic Sans MS', cursive; font-size: 66px; line-height: .78; margin: 9px 0 7px; }
 .phase-progress { color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: .1em; }
 .speed-level { margin-top: 3px; color: var(--accent); font-size: 8px; font-weight: 700; letter-spacing: .09em; }
 .best-value { color: var(--muted); font-size: 9px; }
@@ -60,34 +59,34 @@ button { font: inherit; }
 .flight-note span { color: var(--muted); font-size: 10px; letter-spacing: .08em; }
 .phase-banner { position: absolute; left: 50%; top: 42%; min-width: 260px; padding: 14px 22px 16px; transform: translate(-50%, -50%) rotate(-1deg); text-align: center; color: var(--ink); background: var(--surface); border: 2px solid var(--accent); box-shadow: 8px 8px 0 color-mix(in srgb, var(--accent) 28%, transparent); animation: phase-pop 1.9s ease both; }
 .phase-banner span { display: block; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .2em; }
-.phase-banner strong { display: block; margin: 3px 0 1px; font-family: 'Patrick Hand', cursive; font-size: 36px; line-height: 1; text-transform: uppercase; }
+.phase-banner strong { display: block; margin: 3px 0 1px; font-family: 'Comic Sans MS', cursive; font-size: 36px; line-height: 1; text-transform: uppercase; }
 .phase-banner small { color: var(--muted); font-size: 11px; }
 .speed-boost { position: absolute; left: 50%; top: 25%; padding: 9px 14px; transform: translateX(-50%); color: #101820; background: #f0bd42; border: 2px solid #101820; box-shadow: 5px 5px 0 rgba(16,24,32,.28); font-size: 10px; font-weight: 800; letter-spacing: .12em; white-space: nowrap; animation: speed-boost 1.25s ease both; }
 .landing-banner { position: absolute; left: 50%; bottom: 16%; min-width: 250px; padding: 12px 20px 14px; transform: translateX(-50%) rotate(-1deg); text-align: center; color: var(--ink); background: var(--surface); border: 2px solid var(--accent); box-shadow: 7px 7px 0 color-mix(in srgb, var(--accent) 25%, transparent); animation: landing-pulse 1.25s ease-in-out infinite alternate; }
 .landing-banner span, .landing-banner small { display: block; color: var(--accent); font-size: 9px; font-weight: 700; letter-spacing: .16em; }
-.landing-banner strong { display: block; margin: 3px 0; font-family: 'Patrick Hand', cursive; font-size: 29px; line-height: 1; }
+.landing-banner strong { display: block; margin: 3px 0; font-family: 'Comic Sans MS', cursive; font-size: 29px; line-height: 1; }
 .transition-vignette, .countdown-vignette { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow: hidden; }
 .transition-vignette::before, .countdown-vignette::before { content: ''; position: absolute; inset: 0; pointer-events: none; }
 .transition-vignette::before { box-shadow: inset 0 0 20px 0 rgba(5,12,20,.2); animation: vignette-close 2.35s ease-in forwards; }
 .countdown-vignette::before { box-shadow: inset 0 0 0 70vmax #07111d; animation: vignette-open .9s ease-out forwards; }
 .transition-message { position: relative; z-index: 1; padding: 18px 26px; color: #f4f7fb; text-align: center; }
 .transition-message span { display: block; color: #f0bd42; font-size: 11px; font-weight: 700; letter-spacing: .2em; }
-.transition-message strong { display: block; margin-top: 6px; font-family: 'Patrick Hand', cursive; font-size: clamp(30px, 6vw, 54px); font-weight: 400; }
+.transition-message strong { display: block; margin-top: 6px; font-family: 'Comic Sans MS', cursive; font-size: clamp(30px, 6vw, 54px); font-weight: 400; }
 .countdown-vignette { color: var(--ink); text-align: center; }
 .countdown-content { position: relative; z-index: 1; text-align: center; }
 .countdown-title { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .16em; }
-.countdown-number { font-family: 'Patrick Hand', cursive; font-size: clamp(100px, 24vw, 180px); line-height: .85; text-shadow: 5px 6px 0 color-mix(in srgb, var(--accent) 28%, transparent); }
+.countdown-number { font-family: 'Comic Sans MS', cursive; font-size: clamp(100px, 24vw, 180px); line-height: .85; text-shadow: 5px 6px 0 color-mix(in srgb, var(--accent) 28%, transparent); }
 .countdown-copy { margin-top: 12px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .start-card, .gameover-card { position: absolute; left: 50%; top: 58%; transform: translate(-50%, -50%) rotate(-1.2deg); pointer-events: auto; color: var(--ink); background: var(--surface); border: 1px solid color-mix(in srgb, var(--ink) 72%, transparent); box-shadow: 8px 9px 0 color-mix(in srgb, var(--accent) 20%, transparent); }
 .start-card { display: flex; align-items: center; gap: 18px; padding: 18px 28px 19px 19px; min-width: 280px; }
-.start-arrow { color: #eb6f51; font-family: 'Patrick Hand', cursive; font-size: 52px; transform: rotate(-7deg); }
+.start-arrow { color: #eb6f51; font-family: 'Comic Sans MS', cursive; font-size: 52px; transform: rotate(-7deg); }
 .card-eyebrow { color: var(--accent); font-size: 10px; }
-.start-title, .gameover-title { font-family: 'Patrick Hand', cursive; font-size: 34px; line-height: .92; margin: 5px 0 8px; }
+.start-title, .gameover-title { font-family: 'Comic Sans MS', cursive; font-size: 34px; line-height: .92; margin: 5px 0 8px; }
 .card-copy { color: var(--muted); font-size: 12px; line-height: 1.45; margin: 0; }
 .gameover-card { min-width: 316px; padding: 22px 24px 20px; }
 .gameover-title { margin-bottom: 18px; }
 .result-row { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px dashed var(--muted); padding-top: 9px; color: var(--muted); font-size: 10px; letter-spacing: .15em; }
-.result-row strong { color: var(--ink); font-family: 'Patrick Hand', cursive; font-size: 30px; letter-spacing: 0; }
+.result-row strong { color: var(--ink); font-family: 'Comic Sans MS', cursive; font-size: 30px; letter-spacing: 0; }
 .restart-button { margin-top: 18px; width: 100%; padding: 11px 12px; border: 1px solid var(--accent); color: var(--accent); background: transparent; text-transform: uppercase; letter-spacing: .1em; font-size: 10px; font-weight: 700; transition: transform .16s ease-out, background .16s ease-out, color .16s ease-out; }
 .restart-button:hover { background: var(--accent); color: #101b29; transform: translateY(-2px); }
 .restart-button:active { transform: scale(.97); }
@@ -148,7 +147,7 @@ button { font: inherit; }
 
 @media (orientation: landscape) and (max-height: 760px) {
   .game-shell { min-height: 0; }
-  .hud-topbar { inset: 11px 14px auto; align-items: flex-start; }
+  .hud-topbar { top: max(11px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); bottom: auto; left: max(14px, env(safe-area-inset-left)); align-items: flex-start; }
   .brand-lockup { min-width: 0; }
   .brand-kicker { display: none; }
   .brand-lockup h1 { font-size: 28px; line-height: 1; }
@@ -158,9 +157,9 @@ button { font: inherit; }
   .score-value { grid-area: score; margin: 0 6px 0 0; font-size: 34px; line-height: .9; }
   .phase-progress { grid-area: progress; font-size: 8px; white-space: nowrap; }
   .speed-level { grid-area: speed; margin: 1px 0 0; font-size: 7px; white-space: nowrap; }
-  .phase-chip { top: 53px; left: 14px; padding: 4px 7px; font-size: 8px; }
+  .phase-chip { top: max(53px, calc(env(safe-area-inset-top) + 42px)); left: max(14px, env(safe-area-inset-left)); padding: 4px 7px; font-size: 8px; }
   .flight-note { display: none; }
-  .hud-footer { inset: auto 14px 9px; justify-content: center; font-size: 8px; }
+  .hud-footer { top: auto; right: max(14px, env(safe-area-inset-right)); bottom: max(9px, env(safe-area-inset-bottom)); left: max(14px, env(safe-area-inset-left)); justify-content: center; font-size: 8px; }
   .hud-footer > span:first-child, .hud-footer > span:last-child { display: none; }
   .footer-center { display: inline; }
   .phase-banner { top: 50%; min-width: 220px; padding: 10px 16px 12px; }
