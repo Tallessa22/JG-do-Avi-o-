@@ -6,16 +6,18 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
-import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +25,7 @@ import androidx.webkit.WebViewAssetLoader;
 import androidx.webkit.WebViewClientCompat;
 
 public final class MainActivity extends Activity {
+    private static final String LOG_TAG = "PaperFlight";
     private static final String APP_URL = "https://appassets.androidplatform.net/assets/public/index.html";
     private WebView webView;
 
@@ -36,16 +39,33 @@ public final class MainActivity extends Activity {
         getWindow().setNavigationBarColor(Color.TRANSPARENT);
         hideSystemBars();
 
-        webView = new WebView(this);
-        webView.setBackgroundColor(Color.rgb(245, 241, 231));
-        configureWebView(webView);
-        setContentView(webView);
+        try {
+            webView = new WebView(this);
+            webView.setBackgroundColor(Color.rgb(245, 241, 231));
+            configureWebView(webView);
+            setContentView(webView);
 
-        if (savedInstanceState == null) {
-            webView.loadUrl(APP_URL);
-        } else {
-            webView.restoreState(savedInstanceState);
+            if (savedInstanceState == null || webView.restoreState(savedInstanceState) == null) {
+                webView.loadUrl(APP_URL);
+            }
+        } catch (Throwable error) {
+            Log.e(LOG_TAG, "Falha ao iniciar o WebView", error);
+            showStartupError();
         }
+    }
+
+    private void showStartupError() {
+        TextView message = new TextView(this);
+        message.setBackgroundColor(Color.rgb(245, 241, 231));
+        message.setTextColor(Color.rgb(30, 38, 48));
+        message.setGravity(Gravity.CENTER);
+        message.setPadding(48, 48, 48, 48);
+        message.setTextSize(18);
+        message.setText(
+            "Não foi possível abrir o Paper Flight.\n\n" +
+            "Atualize o Android System WebView e o Google Chrome pela Play Store e tente novamente."
+        );
+        setContentView(message);
     }
 
     private void configureWebView(WebView view) {
@@ -158,13 +178,5 @@ public final class MainActivity extends Activity {
             return !"appassets.androidplatform.net".equals(uri.getHost());
         }
 
-        @Override
-        public boolean onRenderProcessGone(
-            @NonNull WebView view,
-            @NonNull RenderProcessGoneDetail detail
-        ) {
-            recreate();
-            return true;
-        }
     }
 }
